@@ -1,0 +1,21 @@
+{{- if and .Values.app.name .Values.dependencies }}
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: {{ .Values.app.name }}-rbac
+  namespace: {{ .Values.app.name }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Values.app.name }} 
+  action: ALLOW
+  rules:
+  - from:
+    - source:
+        namespaces: [{{ .Values.app.name }}]
+    to:
+    - operation:
+        hosts:
+          {{- range .Values.app_dependencies }}
+            - "{{ . }}/*"
+          {{- end }}

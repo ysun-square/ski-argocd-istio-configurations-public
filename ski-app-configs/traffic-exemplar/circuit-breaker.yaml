@@ -1,0 +1,4 @@
+circuitBreaker:
+  maxRequests: 2000                  # DefaultTraconMaxRequests
+  budgetPercent: 5.0                 # DefaultBudgetPercent
+  minRetryConcurrency: 3             # DefaultMinRetryConcurrency

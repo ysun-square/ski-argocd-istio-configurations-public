@@ -1,0 +1,18 @@
+{{- if and .Values.app.name }}
+apiVersion: networking.istio.io/v1alpha3
+kind: Sidecar
+metadata:
+  name: {{ .Values.app.name }}-sidecar
+  namespace: {{ .Values.app.name }}
+spec:
+  workloadSelector:
+    labels:
+      app: {{ .Values.app.name }}
+  egress:
+    - bind: unix://@istio-proxy-egress.sock
+      captureMode: NONE
+      hosts:
+        {{- range .Values.app_dependencies }}
+          - "{{ . }}/*"
+        {{- end }}
+{{- end }}

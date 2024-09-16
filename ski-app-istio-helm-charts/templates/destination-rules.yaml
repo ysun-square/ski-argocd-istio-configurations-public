@@ -1,0 +1,21 @@
+{{- if and .Values.app.name }}
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  name: {{ .Values.app.name }}-dr
+  namespace: {{ .Values.app.namespace }}
+spec:
+  host: {{ .Values.app.name }}
+  trafficPolicy:
+    tls:
+      mode: {{ .Values.mtls.mode }}
+    outlierDetection:
+      consecutive5xxErrors: {{ .Values.outlierDetection.consecutive5xxErrors }}
+      interval: {{ .Values.outlierDetection.interval }}
+      baseEjectionTime: {{ .Values.outlierDetection.baseEjectionTime }}
+      maxEjectionPercent: {{ .Values.outlierDetection.maxEjectionPercent }}
+    circuitBreaker:
+      maxRequests: {{ .Values.circuitBreaker.maxRequests }}
+      budgetPercent: {{ .Values.circuitBreaker.budgetPercent }}
+      minRetryConcurrency: {{ .Values.circuitBreaker.minRetryConcurrency }}
+{{- end }}

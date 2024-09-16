@@ -1,0 +1,5 @@
+apiVersion: v2
+name: ski-app-istio
+description: A Helm chart for a ski application with Istio resources
+version: 0.1.0
+appVersion: "1.0"

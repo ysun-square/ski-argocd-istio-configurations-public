@@ -1,0 +1,13 @@
+mtls:
+  mode: MUTUAL
+
+circuitBreaker:
+  maxRequests: 2000                  # DefaultTraconMaxRequests
+  budgetPercent: 5.0                 # DefaultBudgetPercent
+  minRetryConcurrency: 3             # DefaultMinRetryConcurrency
+
+outlierDetection:
+  consecutive5xxErrors: 5
+  interval: 10s
+  baseEjectionTime: 30s
+  maxEjectionPercent: 30
