@@ -1,0 +1,5 @@
+app_name:
+  traffic-exemplar
+dependencies:
+  - exemplar
+  - registry

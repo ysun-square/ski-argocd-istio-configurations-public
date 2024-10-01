@@ -1,0 +1,6 @@
+{{- if and .Values.app .Values.app.name }}  # Check if .Values.app and .Values.app.name are set
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: {{ .Values.app.name }}
+{{- end }}

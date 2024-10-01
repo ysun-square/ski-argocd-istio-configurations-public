@@ -1,8 +1,8 @@
-{{- if and .Values.app.name }}
+{{- if and .Values.app .Values.app.name }}  # Check if .Values.app and .Values.app.name are set
 apiVersion: networking.istio.io/v1alpha3
 kind: Sidecar
 metadata:
-  name: {{ .Values.app.name }}-sidecar
+  name: {{ .Values.app.name }}
   namespace: {{ .Values.app.name }}
 spec:
   workloadSelector:
@@ -15,4 +15,4 @@ spec:
         {{- range .Values.app_dependencies }}
           - "{{ . }}/*"
         {{- end }}
-{{- end }}
+{{- end }}  # End the if block
