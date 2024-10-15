@@ -1,10 +1,13 @@
-{{- if and .Values.app .Values.app.name }}  # Check if .Values.app and .Values.app.name are set
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Values.app.name }}
-  namespace: {{ .Values.app.name }}
+  name: traffic-exemplar
+  namespace: traffic-exemplar
 spec:
   selector:
-    app: {{ .Values.app.name }}
-{{- end }}
+    app: traffic-exemplar
+  ports:
+    - name: https
+      port: 443
+      targetPort: 443
+      protocol: TCP
